@@ -5,11 +5,11 @@ module.exports = {
     note: "Come as you are. We'll walk with you."
   },
   navigation: [
-    { label: "Who We Are", href: "#who-we-are" },
-    { label: "What We Do", href: "#what-we-do" },
-    { label: "Our Work", href: "#our-work" },
-    { label: "Get Involved", href: "#get-involved" },
-    { label: "Reach Out", href: "#reach-out" }
+    { key: "who-we-are", label: "Who We Are", href: "/who-we-are.html" },
+    { key: "what-we-do", label: "What We Do", href: "/what-we-do.html" },
+    { key: "our-work", label: "Our Work", href: "/our-work.html" },
+    { key: "get-involved", label: "Get Involved", href: "/get-involved.html" },
+    { key: "reach-out", label: "Reach Out", href: "/reach-out.html" }
   ],
   hero: {
     eyebrow: "For girls and women choosing hope, healing, and a new beginning",
@@ -17,8 +17,8 @@ module.exports = {
     copy:
       "EmboldHer is a beacon of hope, courage, and love. We walk with women and girls the way an older sister, mother, or aunt would: seeing them fully, valuing them deeply, and supporting them to rise on their own terms.",
     ctas: [
-      { label: "Join the Movement", href: "#get-involved", variant: "solid" },
-      { label: "Support a Woman", href: "#reach-out", variant: "outline" }
+      { label: "Join the Movement", href: "/get-involved.html", variant: "solid" },
+      { label: "Support a Woman", href: "/reach-out.html", variant: "outline" }
     ],
     image: {
       src: "/photos/muse.jpeg",
