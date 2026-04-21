@@ -9,6 +9,7 @@ const PORT = Number(process.env.PORT || 4000);
 const ROOT_DIR = path.resolve(__dirname, "..");
 const FRONTEND_DIR = path.join(ROOT_DIR, "frontend");
 const PHOTOS_DIR = path.join(ROOT_DIR, "photos");
+const SHARED_DIR = path.join(ROOT_DIR, "shared");
 const DATA_DIR = path.join(__dirname, "data");
 const INBOX_FILE = path.join(DATA_DIR, "inbox.json");
 
@@ -52,6 +53,24 @@ function sendText(response, statusCode, body) {
     "Content-Type": "text/plain; charset=utf-8"
   });
   response.end(body);
+}
+
+async function readTextBody(request) {
+  return new Promise((resolve, reject) => {
+    let body = "";
+
+    request.on("data", (chunk) => {
+      body += chunk;
+
+      if (body.length > 1_000_000) {
+        reject(new Error("Payload too large."));
+        request.destroy();
+      }
+    });
+
+    request.on("end", () => resolve(body));
+    request.on("error", reject);
+  });
 }
 
 async function readJsonBody(request) {
@@ -131,6 +150,11 @@ async function handleRequest(request, response) {
     return;
   }
 
+  if (request.method === "GET" && pathname === "/site-content.js") {
+    await serveFile(response, path.join(SHARED_DIR, "siteContent.js"));
+    return;
+  }
+
   if (request.method === "POST" && pathname === "/api/contact") {
     const body = await readJsonBody(request);
     const name = String(body.name || "").trim();
@@ -161,6 +185,52 @@ async function handleRequest(request, response) {
       ok: true,
       message: "Your note has been received."
     });
+    return;
+  }
+
+  if (request.method === "POST" && pathname === "/") {
+    const contentType = request.headers["content-type"] || "";
+
+    if (!contentType.includes("application/x-www-form-urlencoded")) {
+      sendText(response, 415, "Unsupported media type.");
+      return;
+    }
+
+    const rawBody = await readTextBody(request);
+    const formData = new URLSearchParams(rawBody);
+
+    if (formData.get("form-name") !== "emboldher-contact") {
+      sendText(response, 400, "Unknown form.");
+      return;
+    }
+
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const context = String(formData.get("context") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const honeypot = String(formData.get("bot-field") || "").trim();
+
+    if (honeypot) {
+      sendText(response, 200, "Ignored.");
+      return;
+    }
+
+    if (!name || !email || !message) {
+      sendText(response, 400, "Name, email, and message are required.");
+      return;
+    }
+
+    const entry = {
+      id: crypto.randomUUID(),
+      receivedAt: new Date().toISOString(),
+      name,
+      email,
+      context,
+      message
+    };
+
+    await appendMessage(entry);
+    sendText(response, 200, "Your note has been received.");
     return;
   }
 
