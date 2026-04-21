@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EmboldHer is a trusted presence walking with women and girls through dignity, care, belonging, and hope."
+    />
+    <title>EmboldHer Foundation</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-glow page-glow-left" aria-hidden="true"></div>
+    <div class="page-glow page-glow-right" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand-mark" href="#top">
+        <span class="brand-mark-symbol">E</span>
+        <span class="brand-mark-copy">
+          <strong id="brandName">EmboldHer</strong>
+          <small id="brandTagline">A trusted presence for women and girls.</small>
+        </span>
+      </a>
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation"></nav>
+    </header>
+
+    <main id="top">
+      <section class="hero reveal">
+        <div class="hero-copy">
+          <p class="eyebrow" id="heroEyebrow"></p>
+          <h1 id="heroHeadline"></h1>
+          <p class="hero-text" id="heroCopy"></p>
+          <div class="hero-actions" id="heroActions"></div>
+          <div class="value-band" id="valueBand" aria-label="Core values"></div>
+        </div>
+
+        <div class="hero-media">
+          <div class="media-frame">
+            <div class="media-halo" aria-hidden="true"></div>
+            <img id="heroImage" class="hero-image" alt="" />
+          </div>
+          <p class="media-caption" id="heroImageCaption"></p>
+        </div>
+      </section>
+
+      <section class="story-section reveal" id="who-we-are">
+        <div class="section-heading">
+          <p class="section-kicker">Who We Are</p>
+          <h2 id="aboutTitle"></h2>
+        </div>
+        <div class="story-layout">
+          <div class="story-card">
+            <p id="aboutIntro"></p>
+            <p id="aboutBody"></p>
+          </div>
+          <div class="story-highlights" id="aboutHighlights"></div>
+        </div>
+      </section>
+
+      <section class="program-section reveal" id="what-we-do">
+        <div class="section-heading">
+          <p class="section-kicker">What We Do</p>
+          <h2 id="pillarsTitle"></h2>
+          <p class="section-intro" id="pillarsIntro"></p>
+        </div>
+        <div class="program-grid" id="pillarsGrid"></div>
+      </section>
+
+      <section class="work-section reveal" id="our-work">
+        <div class="section-heading">
+          <p class="section-kicker">Our Work</p>
+          <h2 id="workTitle"></h2>
+          <p class="section-intro" id="workIntro"></p>
+        </div>
+        <div class="work-shell">
+          <div class="work-callout">
+            <p class="callout-label">Dignity &amp; Connection Drive</p>
+            <p class="callout-text">
+              Presence, practical support, and conversations that remind women and girls they do not have to walk alone.
+            </p>
+          </div>
+          <ul class="initiative-list" id="initiativeList"></ul>
+        </div>
+      </section>
+
+      <section class="involvement-section reveal" id="get-involved">
+        <div class="section-heading">
+          <p class="section-kicker">Get Involved</p>
+          <h2 id="involvementTitle"></h2>
+          <p class="section-intro" id="involvementIntro"></p>
+        </div>
+        <div class="action-grid" id="actionGrid"></div>
+      </section>
+
+      <section class="closing-banner reveal">
+        <p class="closing-kicker">A Place To Begin Again</p>
+        <h2 id="closingTitle"></h2>
+        <p id="closingBody"></p>
+      </section>
+
+      <section class="contact-section reveal" id="reach-out">
+        <div class="contact-copy">
+          <p class="section-kicker">Reach Out</p>
+          <h2 id="contactTitle"></h2>
+          <p class="section-intro" id="contactIntro"></p>
+          <p id="contactBody"></p>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <label>
+            <span id="nameLabel">Your name</span>
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+
+          <label>
+            <span id="emailLabel">Email address</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+
+          <label>
+            <span id="contextLabel">How can we walk with you?</span>
+            <select name="context" id="contextSelect"></select>
+          </label>
+
+          <label>
+            <span id="messageLabel">Message</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+
+          <button class="button button-solid" type="submit" id="submitButton">Send Message</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p id="footerNote"></p>
+      <p><span id="footerYear"></span> EmboldHer</p>
+    </footer>
+
+    <noscript>This site needs JavaScript enabled to load its content.</noscript>
+    <script src="/app.js"></script>
+  </body>
+</html>
